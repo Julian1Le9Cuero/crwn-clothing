@@ -2,3 +2,12 @@ body {
   font-family: "Open Sans Condensed", sans-serif;
   padding: 20px 60px;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: rgba(85, 54, 126, 0.82);
+}
