@@ -47,7 +47,7 @@ class Directory extends Component {
   render() {
     return (
       <div className="directory-menu">
-        {/* Use the spread operaor because the name of the properties are the same as its values */}
+        {/* Use the spread operator because the name of the properties are the same as its values */}
         {this.state.sections.map(({ id, ...otherSectionProps }) => {
           return <MenuItem key={id} {...otherSectionProps} />;
         })}
