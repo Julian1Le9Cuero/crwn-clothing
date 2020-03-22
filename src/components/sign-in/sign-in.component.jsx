@@ -2,7 +2,7 @@ import React from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-bottom/custom-button.component";
 
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
 import "./sign-in.styles.scss";
 
@@ -20,9 +20,16 @@ class SignIn extends React.Component {
     this.setState({ [name]: value }); //Dinamically change the state using square brackets o know if it is the email or password input
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault(); //Prevent default submit action from firing. We want FULL CONROL of what submit is gonna do
-    this.setState({ email: "", password: "" });
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: "", password: "" }); // If succeeds clear the form inputs
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
