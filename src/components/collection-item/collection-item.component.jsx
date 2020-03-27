@@ -1,8 +1,13 @@
 import React from "react";
+import CustomButton from "../custom-button/custom-button.component";
+import { connect } from "react-redux";
+
+import { addItem } from "../../redux/cart/cart.actions";
 
 import "./collection-item.styles.scss";
 
-const CollectionItem = ({ id, name, price, imageUrl }) => {
+const CollectionItem = ({ item, addItem }) => {
+  const { name, price, imageUrl } = item;
   return (
     <div className="collection-item">
       <div
@@ -15,8 +20,18 @@ const CollectionItem = ({ id, name, price, imageUrl }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
+      <CustomButton onClick={() => addItem(item)} inverted>
+        ADD TO CART
+      </CustomButton>
     </div>
   );
 };
 
-export default CollectionItem;
+// Create new function props.addItem hat will go into the collection item, after the action is dispatched it goes to the redux flow (pass the state as props)
+const mapDispatchToProps = dispatch => {
+  return {
+    addItem: item => dispatch(addItem(item))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CollectionItem);
