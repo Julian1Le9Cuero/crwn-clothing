@@ -22,7 +22,7 @@ const Header = ({ currentUser, hidden }) => {
         <Link className="option" to="/shop">
           SHOP
         </Link>
-        <Link className="option" to="/shop">
+        <Link className="option" to="/contact">
           CONTACT
         </Link>
         {/* If current user is an object then the ternary will evaluate to true */}
