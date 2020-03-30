@@ -19,7 +19,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
             return <CartItem key={cartItem.id} item={cartItem} />;
           })
         ) : (
-          <span className="empty-message">Your cart is empty</span>
+          <span className="empty-message">Your cart is empty.</span>
         )}
       </div>
       <CustomButton
