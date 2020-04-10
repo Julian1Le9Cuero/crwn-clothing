@@ -13,14 +13,18 @@ const CollectionItem = ({ item, addItem }) => {
       <div
         className="image"
         style={{
-          backgroundImage: `url(${imageUrl})`
+          backgroundImage: `url(${imageUrl})`,
         }}
       />
       <div className="collection-footer">
         <span className="name">{name}</span>
         <span className="price">${price}</span>
       </div>
-      <CustomButton onClick={() => addItem(item)} inverted>
+      <CustomButton
+        className="custom-button"
+        onClick={() => addItem(item)}
+        inverted
+      >
         ADD TO CART
       </CustomButton>
     </div>
@@ -28,9 +32,9 @@ const CollectionItem = ({ item, addItem }) => {
 };
 
 // Create new function props.addItem hat will go into the collection item, after the action is dispatched it goes to the redux flow (pass the state as props)
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: item => dispatch(addItem(item))
+    addItem: (item) => dispatch(addItem(item)),
   };
 };
 

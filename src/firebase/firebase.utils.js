@@ -9,7 +9,7 @@ const config = {
   projectId: "crwn-db-2ad1d",
   storageBucket: "crwn-db-2ad1d.appspot.com",
   messagingSenderId: "658481636483",
-  appId: "1:658481636483:web:526540a6a27c89ca0367b6"
+  appId: "1:658481636483:web:526540a6a27c89ca0367b6",
 };
 
 // This will be asynchronous because we're making an API request
@@ -33,7 +33,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (err) {
       console.log("Error creating user", err.message);
@@ -44,6 +44,40 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 };
 
 firebase.initializeApp(config);
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+    return {
+      //  Pass the title because it is the same string in the routing
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    // Return acc so that it goes to the next iteration in the reduce
+    return accumulator;
+  }, {});
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach((object) => {
+    const newDocRef = collectionRef.doc(); //We want the key to be unique, so we just let firestore to do that, it's not necessary to pass object.title as a parameter
+    batch.set(newDocRef, object); // Pass the document reference and the value we ant to set it to
+  });
+  // Fire of the batch reference, this returns a promise
+  return await batch.commit();
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

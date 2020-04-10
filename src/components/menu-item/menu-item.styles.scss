@@ -8,7 +8,7 @@
 .directory-menu {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; //Items will go to the NEXT LINE, it must be SET at the flex container
   justify-content: space-between;
 }
 

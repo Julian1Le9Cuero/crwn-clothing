@@ -13,7 +13,7 @@ import Checkout from "./pages/checkout/checkout.component";
 import Header from "./components/header/header.component";
 import {
   auth,
-  createUserProfileDocument
+  createUserProfileDocument,
 } from "./firebase/firebase.utils"; /*Save the state of the user in our App state
 so we can pass it to the components that we need
 */
@@ -25,11 +25,11 @@ class App extends React.Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       // this.setState({ currentUser: user });
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapShot => {
+        userRef.onSnapshot((snapShot) => {
           /* On the snapshot object is where 
           we're going to get the data related to
           this user that we just possibly store if it's a 
@@ -37,11 +37,16 @@ class App extends React.Component {
           */
           setCurrentUser({
             id: snapShot.id,
-            ...snapShot.data()
+            ...snapShot.data(),
           });
         });
       } else {
         setCurrentUser(userAuth);
+        // Destructure everything but the id because firebase will generate it for us
+        // addCollectionAndDocuments(
+        //   "collections",
+        //   collectionsArray.map(({ title, items }) => ({ title, items }))
+        // );
       }
       // This gets the user ref
       // Take the userRef to check if the db has been updated at that reference with any new data (if the snapshot has changed)
@@ -80,16 +85,16 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 // Dispatch the action that we want to pass
 /* dispatch is a way for redux to know that 
 whatever we're passing to it is going to be 
 an action (it will pass the user object to Redux)
 object that will be passed to EVERY REDUCER */
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentUser: user => dispatch(setCurrentUser(user))
+    setCurrentUser: (user) => dispatch(setCurrentUser(user)),
   };
 };
 
