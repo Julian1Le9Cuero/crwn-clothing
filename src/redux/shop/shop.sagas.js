@@ -1,6 +1,6 @@
 // Holds the saga code related to the shop component
 // Effects library that will be used to compose the saga code
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeEvery, call, put, all } from "redux-saga/effects";
 
 import {
   firestore,
@@ -38,4 +38,8 @@ export function* fetchCollectionsStart() {
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
   );
+}
+
+export function* shopSagas() {
+  yield all([call(fetchCollectionsStart)]);
 }

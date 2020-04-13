@@ -2,9 +2,8 @@ import React from "react";
 import "./sign-up.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
-// We will create and authenticate new users
+import { signUpStart } from "../../redux/user/user.actions";
+import { connect } from "react-redux";
 
 class SignUp extends React.Component {
   constructor() {
@@ -13,41 +12,23 @@ class SignUp extends React.Component {
       displayName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     };
   }
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    //   Manually create authentication
+    const { signUpStart } = this.props;
+    // Manually create authentication
     const { displayName, email, password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
-
-    try {
-      // Once this is successful the user is assign to the application
-      // Destructure because the object return from the request, has a "user" "property, this is decided by firebase
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      ); //This returns an object
-      await createUserProfileDocument(user, { displayName }); //displayName comes as an object, so we want its value
-      //    If this promise succeeds then set the state
-      // This will clear the form
-      this.setState({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-      });
-    } catch (err) {
-      console.error(err);
-    }
+    signUpStart({ email, password, displayName });
   };
 
-  handleChange = async event => {
+  handleChange = async (event) => {
     const { name, value } = event.target;
     //   Dynamically set the name
     this.setState({ [name]: value });
@@ -102,4 +83,8 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);
