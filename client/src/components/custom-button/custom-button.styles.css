@@ -1,0 +1,51 @@
+.custom-button {
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px;
+  font-size: 15px;
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed";
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.custom-button:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.custom-button.google-sign-in {
+  background: #4285f4;
+  color: #fff;
+}
+
+.custom-button.google-sign-in:hover {
+  background: #357ae8;
+  border: none;
+}
+
+.custom-button.inverted {
+  background: #fff;
+  color: #000;
+  border: 1px solid black;
+}
+
+.custom-button.inverted:hover {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+/*# sourceMappingURL=custom-button.styles.css.map */
