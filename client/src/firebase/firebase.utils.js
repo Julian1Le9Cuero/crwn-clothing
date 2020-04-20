@@ -82,8 +82,6 @@ export const addCollectionAndDocuments = async (
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-      console.log("User = ", userAuth);
-
       unsubscribe();
       resolve(userAuth);
     }, reject);

@@ -1,17 +1,25 @@
 .collection-page {
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+    align-items: center;
+  }
 
   .title {
-    font-size: 38px;
+    font-size: 28px;
     margin: 0 auto 30px;
+    text-transform: uppercase;
   }
 
   .items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-
+    @media screen and (max-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
     & .collection-item {
       margin-bottom: 30px;
     }

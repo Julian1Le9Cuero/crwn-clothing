@@ -12,9 +12,9 @@ const CollectionPage = ({ collection }) => {
 
   return (
     <div className="collection-page">
-      <h2>{title}</h2>
+      <h2 className="title">{title}</h2>
       <div className="items">
-        {items.map(item => (
+        {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
       </div>
@@ -30,7 +30,7 @@ const mapStateToProps = (state, ownProps) => ({
       The state is being passed this way because of CURRYING (1 ARGUMENT AT A TIME!!)
       It needs a part of the state depending on he url parameter
       after /shop*/
-  collection: selectCollection(ownProps.match.params.collectionId)(state)
+  collection: selectCollection(ownProps.match.params.collectionId)(state),
 });
 
 export default connect(mapStateToProps)(CollectionPage);

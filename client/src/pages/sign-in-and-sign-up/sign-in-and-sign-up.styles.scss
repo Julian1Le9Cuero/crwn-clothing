@@ -3,4 +3,16 @@
   justify-content: space-between;
   width: 850px;
   margin: 30px auto;
+  @media screen and (max-width: 800px) {
+    width: 700px;
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin: 30px auto;
+  }
+  @media screen and (max-width: 600px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin: 30px auto;
+    width: 100%;
+  }
 }

@@ -9,12 +9,21 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 25px;
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
 `;
 
 // Use styled() to use a Link element because it is different than a normal HTML element
 export const LogoContainer = styled(Link)`
   width: 70px;
   padding: 25px;
+  @media screen and (max-width: 800px) {
+    width: 40px;
+    padding: 0;
+  }
 `;
 
 export const OptionsContainer = styled.div`
@@ -23,6 +32,9 @@ export const OptionsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 `;
 
 export const OptionLink = styled(Link)`

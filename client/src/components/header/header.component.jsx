@@ -17,7 +17,7 @@ import {
   OptionLink,
 } from "./header.styles";
 
-import "./header.styles.scss";
+// import "./header.styles.scss";
 
 const Header = ({ currentUser, hidden, signOutStart }) => {
   return (

@@ -42,13 +42,13 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
           type="email"
           name="email"
           value={email}
-          label="email"
+          label="Email"
           handleChange={handleChange}
         />
         <FormInput
           type="password"
           name="password"
-          label="password"
+          label="Password"
           value={password}
           handleChange={handleChange}
         />

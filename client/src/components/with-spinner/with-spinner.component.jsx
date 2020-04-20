@@ -1,19 +1,10 @@
 import React from "react";
-import { SpinnerOverlay, SpinnerContainer } from "./with-spinner.styles";
 
+import Spinner from "../spinner/spinner.component";
 /* Function that takes some component tha we want to wrap with the spinner loading functionality
 and the component is passed to the component that wraps it (the HOC) */
-const WithSpinner = (WrappedComponent) => {
-  const Spinner = ({ isLoading, ...otherProps }) => {
-    return isLoading ? (
-      <SpinnerOverlay>
-        <SpinnerContainer />
-      </SpinnerOverlay>
-    ) : (
-      <WrappedComponent {...otherProps} />
-    );
-  };
-  return Spinner;
+const WithSpinner = (WrappedComponent) => ({ isLoading, ...otherProps }) => {
+  return isLoading ? <Spinner /> : <WrappedComponent {...otherProps} />;
 };
 
 export default WithSpinner;

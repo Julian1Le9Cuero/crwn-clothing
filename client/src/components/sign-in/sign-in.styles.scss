@@ -2,6 +2,19 @@
   width: 380px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 1.7rem auto;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    margin: 1.7rem auto;
+  }
 
   .title {
     margin: 10px 0;
@@ -10,5 +23,25 @@
   .buttons {
     display: flex;
     justify-content: space-between;
+    button {
+      @media screen and (max-width: 800px) {
+        min-width: unset;
+        width: 50%;
+        padding: 0;
+        font-size: 0.8rem;
+        &:first-child {
+          margin-right: 2px;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        min-width: unset;
+        width: 50%;
+        padding: 0;
+        font-size: 0.8rem;
+        &:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }
