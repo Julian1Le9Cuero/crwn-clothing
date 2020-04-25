@@ -50,11 +50,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(ShopPage);
-
-function* gen(i) {
-  yield i;
-  yield i + 25;
-}
-
-const g = gen(8);
-g.next();
